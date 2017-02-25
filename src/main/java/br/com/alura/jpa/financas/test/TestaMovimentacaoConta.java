@@ -1,17 +1,30 @@
 package br.com.alura.jpa.financas.test;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import br.com.alura.jpa.financas.dao.JPAUtil;
-import br.com.alura.jpa.financas.modelo.Movimentacao;
+import br.com.alura.jpa.financas.modelo.Conta;
 
 public class TestaMovimentacaoConta {
 	public static void main(String[] args) {
 		EntityManager maneger = new JPAUtil().getEntityManeger();
 		
-		Movimentacao m = maneger.find(Movimentacao.class,2);
+		Query query = maneger.createQuery("select distinct c from Conta c join fetch c.movimentacoes");
 		
-		System.out.println(m.getConta().getTitular());
+		//query.setParameter("pId",2);
+		
+		List<Conta> resultList = query.getResultList();
+		
+		maneger.close();
+		
+		for (Conta conta : resultList) {
+			System.out.println(conta.getMovimentacoes().size());
+		}
+		
+		
 	}
 
 }
