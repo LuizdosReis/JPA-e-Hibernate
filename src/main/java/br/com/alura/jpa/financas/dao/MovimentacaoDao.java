@@ -20,6 +20,12 @@ public class MovimentacaoDao {
 		query.setParameter("pConta",c);
 		return query.getSingleResult();
 	}
+	
+	public Long totalDeMovimentcoes(Conta c){
+		TypedQuery<Long> query = maneger.createNamedQuery("totalDeMovimentacoes",Long.class);
+		query.setParameter("pConta", c);
+		return query.getSingleResult();		
+	}
 
 	
 

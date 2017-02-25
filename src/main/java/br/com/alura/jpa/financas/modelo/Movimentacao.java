@@ -9,9 +9,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
+@NamedQuery(name="totalDeMovimentacoes",query="select count(m) from Movimentacao m where m.conta = :pConta")
 @Entity
 public class Movimentacao {
 
