@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import br.com.alura.jpa.financas.dao.JPAUtil;
 import br.com.alura.jpa.financas.modelo.Conta;
@@ -14,13 +15,13 @@ public class TestaConsultaFuncaoMax {
 		
 		Conta conta = maneger.find(Conta.class, 1);
 		
-		Query query = maneger.createQuery("select max(m.valor) from Movimentacao m where m.conta = :pConta");
+		TypedQuery<BigDecimal> query = maneger.createQuery("select max(m.valor) from Movimentacao m where m.conta = :pConta",BigDecimal.class);
 		
 		query.setParameter("pConta", conta);
 		
-		BigDecimal qtd = (BigDecimal) query.getSingleResult();
+		BigDecimal maior = query.getSingleResult();
 		
-		System.out.println(qtd);
+		System.out.println(maior);
 		
 		maneger.close();
 		
