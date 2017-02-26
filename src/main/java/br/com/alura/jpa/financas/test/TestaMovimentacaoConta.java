@@ -11,7 +11,7 @@ import br.com.alura.jpa.financas.modelo.Conta;
 public class TestaMovimentacaoConta {
 	public static void main(String[] args) {
 		EntityManager maneger = new JPAUtil().getEntityManeger();
-		
+	
 		Query query = maneger.createQuery("select distinct c from Conta c join fetch c.movimentacoes");
 		
 		//query.setParameter("pId",2);

@@ -13,11 +13,14 @@ public class TestaConsultaFuncaoMedia {
 		EntityManager maneger = new JPAUtil().getEntityManeger();
 		
 		Conta c = new Conta();
-		c.setId(2);
+		c.setId(1);
 		
 		MovimentacaoDao movimentacaoDao = new MovimentacaoDao(maneger);
 		
 		Double media = movimentacaoDao.mediaDaConta(c);
+		Long totalDeMovimentcoes = movimentacaoDao.totalDeMovimentcoes(c);
+		
+		System.out.println(totalDeMovimentcoes);
 		
 		System.out.println(media);
 		
